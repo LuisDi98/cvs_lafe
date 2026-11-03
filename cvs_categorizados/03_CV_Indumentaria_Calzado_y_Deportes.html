@@ -2,138 +2,454 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>CV Candelaria Franco - Ropa, Calzado y Deportes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CV Candelaria Franco — Ropa, Calzado y Deportes</title>
 <script src="../html2pdf.bundle.min.js"></script>
 <style>
+  :root {
+    --accent: #7c3aed;
+    --accent-bg: #ede9fe;
+    --accent-border: #c4b5fd;
+    --slate-900: #0f172a;
+    --slate-800: #1e293b;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748b;
+    --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
+    --slate-50: #f8fafc;
+  }
+
   @page {
     size: A4 portrait;
     margin: 0;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: #1e293b;
-    background: #f1f5f9;
-    line-height: 1.35;
+
+  * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
   }
-  .print-bar {
-    max-width: 800px;
-    margin: 16px auto;
-    background: #0f172a;
+
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--slate-800);
+    background: radial-gradient(circle at 15% 15%, var(--accent-bg) 0%, #f1f5f9 45%, #e2e8f0 100%);
+    background-attachment: fixed;
+    line-height: 1.38;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Ambient Particles Canvas */
+  #bgParticles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Top Glassmorphism Action Bar */
+  .top-glass-bar {
+    position: sticky;
+    top: 10px;
+    z-index: 40;
+    max-width: 820px;
+    margin: 12px auto 18px auto;
+    padding: 12px 16px;
+    background: rgba(15, 23, 42, 0.86);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.22);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slideDownFade {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .bar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-back-portal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12);
     color: #fff;
-    padding: 12px 18px;
-    border-radius: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-back-portal:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateX(-2px);
+  }
+
+  .bar-info-title {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .bar-info-sub {
+    font-size: 11.5px;
+    color: #cbd5e1;
+    margin-top: 1px;
+  }
+
+  .btn-download-pdf {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-download-pdf:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.55);
+  }
+
+  .btn-download-pdf:active {
+    transform: scale(0.96);
+  }
+
+  /* Executive CV Sheet */
+  .page-wrap {
+    position: relative;
+    z-index: 5;
+    padding: 0 12px 40px 12px;
+  }
+
+  .sheet {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
+    animation: sheetRise 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes sheetRise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sheet-top-accent {
+    height: 8px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--slate-900) 100%);
+  }
+
+  .sheet-inner {
+    padding: 22px 26px 20px 26px;
+  }
+
+  /* Header Block */
+  .cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--slate-100);
+    flex-wrap: wrap;
+  }
+
+  .cv-title-area {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .cv-name {
+    font-size: 25px;
+    font-weight: 900;
+    color: var(--slate-900);
+    letter-spacing: -0.5px;
+    line-height: 1.08;
+  }
+
+  .cv-headline-pill {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 10px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .cv-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 4px 14px;
+    font-size: 11.5px;
+    color: var(--slate-600);
+    font-weight: 600;
+    background: var(--slate-50);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--slate-200);
+  }
+
+  .cv-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  /* Sections */
+  .cv-section {
+    margin-bottom: 11px;
+  }
+
+  .cv-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .section-heading::after {
+    content: "";
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--accent-border) 0%, var(--slate-100) 100%);
+  }
+
+  .profile-box {
+    background: var(--slate-50);
+    border-left: 3.5px solid var(--accent);
+    padding: 8px 12px;
+    border-radius: 0 8px 8px 0;
+    font-size: 11.8px;
+    color: var(--slate-700);
+    line-height: 1.42;
+    text-align: justify;
+  }
+
+  /* 2-Column Skills Grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+  }
+
+  .skill-card {
+    background: #ffffff;
+    border: 1px solid var(--slate-200);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+
+  .skill-card-title {
+    font-size: 11.4px;
+    font-weight: 800;
+    color: var(--slate-900);
+    margin-bottom: 1px;
+  }
+
+  .skill-card-desc {
+    font-size: 11px;
+    color: var(--slate-600);
+    line-height: 1.32;
+  }
+
+  /* Timeline Experience */
+  .timeline-list {
+    position: relative;
+    padding-left: 14px;
+    border-left: 2px solid var(--accent-border);
+    margin-left: 5px;
+  }
+
+  .exp-item {
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .exp-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .exp-dot {
+    position: absolute;
+    left: -19.5px;
+    top: 4px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+
+  .exp-role-wrap {
+    font-size: 12.2px;
+    line-height: 1.25;
+  }
+
+  .exp-role {
+    font-weight: 800;
+    color: var(--slate-900);
+  }
+
+  .exp-company {
+    font-weight: 700;
+    color: var(--accent);
+    margin-left: 3px;
+  }
+
+  .exp-date {
+    font-size: 10.8px;
+    font-weight: 700;
+    color: var(--slate-600);
+    background: var(--slate-100);
+    padding: 1.5px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .exp-bullets {
+    padding-left: 15px;
+    font-size: 11.3px;
+    color: var(--slate-700);
+    line-height: 1.34;
+  }
+
+  .exp-bullets li {
+    margin-bottom: 1.5px;
+  }
+
+  /* Footer Education & Availability */
+  .edu-footer-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-  }
-  .btn-grp {
-    display: flex;
-    gap: 8px;
-  }
-  .action-btn {
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 13px;
-    cursor: pointer;
-  }
-  .btn-download {
-    background: #10b981;
-    color: #fff;
-  }
-  .btn-print {
-    background: #0284c7;
-    color: #fff;
-  }
-  .sheet {
-    max-width: 800px;
-    margin: 0 auto 30px auto;
-    background: #ffffff;
-    padding: 24px 28px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    border-radius: 8px;
-  }
-  .header {
-    border-bottom: 2.5px solid #7c3aed;
-    padding-bottom: 10px;
-    margin-bottom: 12px;
-  }
-  .name {
-    font-size: 24px;
-    font-weight: 800;
-    color: #0f172a;
-    letter-spacing: -0.2px;
-  }
-  .headline {
-    font-size: 12.5px;
-    font-weight: 700;
-    color: #7c3aed;
-    margin-top: 2px;
-  }
-  .contact-row {
-    margin-top: 6px;
-    font-size: 12px;
-    color: #475569;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .section {
-    margin-bottom: 10px;
-  }
-  .section-title {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 10px;
+    padding: 8px 12px;
     font-size: 11.5px;
+    color: var(--slate-700);
+  }
+
+  .avail-badge {
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    padding: 3px 9px;
+    border-radius: 999px;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: #7c3aed;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 2px;
-    margin-bottom: 6px;
+    font-size: 11px;
   }
-  .profile-text {
-    font-size: 12px;
-    color: #334155;
-    text-align: justify;
-    line-height: 1.4;
+
+  /* Mobile Responsive Adjustments (when viewing on phone screen) */
+  @media (max-width: 640px) {
+    .top-glass-bar {
+      margin: 8px 10px 14px 10px;
+      padding: 10px 12px;
+    }
+    .btn-download-pdf {
+      width: 100%;
+      justify-content: center;
+      padding: 11px 16px;
+      font-size: 13.5px;
+    }
+    .sheet-inner {
+      padding: 16px 15px;
+    }
+    .cv-name {
+      font-size: 22px;
+    }
+    .cv-contact-grid {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
   }
-  .skills-list {
-    padding-left: 16px;
-    font-size: 11.8px;
-    color: #334155;
+
+
+
+  /* Toast */
+  .cv-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--slate-900);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    z-index: 100;
+    display: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
   }
-  .skills-list li { margin-bottom: 3px; }
-  .exp-item { margin-bottom: 8px; }
-  .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    font-size: 12.8px;
-    margin-bottom: 2px;
-  }
-  .exp-role { font-weight: 700; color: #0f172a; }
-  .exp-date { font-size: 11.5px; color: #64748b; font-weight: 600; }
-  .exp-item ul {
-    padding-left: 16px;
-    font-size: 11.8px;
-    color: #334155;
-  }
-  .exp-item li { margin-bottom: 2px; }
-  .edu-box {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #334155;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+
   @media print {
     @page {
       size: A4 portrait;
@@ -148,7 +464,13 @@
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
-    .print-bar { display: none !important; }
+    #bgParticles, .top-glass-bar, .cv-toast {
+      display: none !important;
+    }
+    .page-wrap {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
     .sheet {
       box-shadow: none !important;
       border: none !important;
@@ -156,90 +478,242 @@
       width: 100% !important;
       max-width: 100% !important;
       margin: 0 !important;
-      padding: 12mm 14mm !important;
       page-break-after: avoid !important;
       page-break-inside: avoid !important;
+    }
+    .sheet-inner {
+      padding: 10mm 12mm !important;
+    }
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .cv-contact-grid {
+      grid-template-columns: repeat(2, auto) !important;
     }
   }
 </style>
 </head>
 <body>
-  <div class="print-bar">
-    <div>
-      <strong>CV #3: Ropa, Calzado y Deportes</strong>
-      <div style="font-size:12px; opacity:0.85;">Listo en 1 página para enviar por WhatsApp o imprimir.</div>
-    </div>
-    <div class="btn-grp">
-      <button class="action-btn btn-download" onclick="downloadPdf()">📥 Descargar PDF (1 Pág)</button>
-    </div>
-  </div>
-  <div class="sheet" id="cvSheet">
-    <div class="header">
-      <div class="name">CANDELARIA FRANCO</div>
-      <div class="headline">VENDEDORA DE SALÓN • CAJERA • ENCARGADA DE LOCAL • REDES SOCIALES</div>
-      <div class="contact-row">
-        <span>📍 Gregorio de Laferrere, La Matanza (CP 1757)</span>
-        <span>📞 +54 9 11 5646-6427</span>
-        <span>✉️ francocandelaria988@gmail.com</span>
-        <span>🎂 25/04/2005</span>
+  <canvas id="bgParticles"></canvas>
+
+  <header class="top-glass-bar">
+    <div class="bar-left">
+      <a href="../index.html" class="btn-back-portal" title="Volver al Portal">⬅️</a>
+      <div>
+        <div class="bar-info-title">👟 CV #3: Ropa, Calzado y Deportes</div>
+        <div class="bar-info-sub">Diseño ejecutivo optimizado en 1 página A4</div>
       </div>
     </div>
-    <div class="section">
-      <div class="section-title">Perfil Profesional</div>
-      <p class="profile-text">Vendedora y encargada de local comercial con Secundario Completo y amplia experiencia en atención personalizada, cierre de ventas, manejo de caja/Posnet y gestión de stock. Cuento con un diferencial único: conocimiento técnico real de confección y telas (2 años en taller textil) que facilita asesorar en calces, talles y calidad de prendas, sumado a manejo de Instagram, Facebook y Canva para promocionar ingresos y ofertas de la tienda.</p>
-    </div>
-    <div class="section">
-      <div class="section-title">Habilidades Técnicas y Competencias</div>
-      <ul class="skills-list"><li><strong>Ventas de Salón y Asesoramiento:</strong> Trato cordial y dinámico, asesoramiento por talles, modelos y calces, venta sugerida y armado/orden de vidriera y percheros.</li><li><strong>Caja y Gestión de Tienda:</strong> Apertura/cierre de local, facturación, cobros con Posnet (cuotas, débito, QR, transferencias), arqueos de caja y cambios.</li><li><strong>Redes Sociales y Marketing:</strong> Creación de placas e historias atractivas en Canva y gestión comercial de Instagram/Facebook para impulsar las ventas.</li><li><strong>Conocimiento Textil Real:</strong> Experiencia técnica en confección, telas y costuras para evaluar calidad de prendas y controlar stock con proveedores.</li></ul>
-    </div>
-    <div class="section">
-      <div class="section-title">Experiencia Laboral Comprobable</div>
-      
+    <button class="btn-download-pdf" id="btnDownload" onclick="downloadPdf(event)">
+      📥 Descargar PDF (1 Pág)
+    </button>
+  </header>
+
+  <div class="page-wrap">
+    <main class="sheet" id="cvSheet">
+      <div class="sheet-top-accent"></div>
+      <div class="sheet-inner">
+        <div class="cv-header">
+          <div class="cv-title-area">
+            <div class="cv-name">CANDELARIA FRANCO</div>
+            <div class="cv-headline-pill">VENDEDORA DE SALÓN • CAJERA • ENCARGADA DE LOCAL • REDES SOCIALES</div>
+          </div>
+          <div class="cv-contact-grid">
+            <span class="cv-contact-item">📍 Gregorio de Laferrere (CP 1757)</span>
+            <span class="cv-contact-item">📞 +54 9 11 5646-6427</span>
+            <span class="cv-contact-item">✉️ francocandelaria988@gmail.com</span>
+            <span class="cv-contact-item">🎂 25/04/2005 (21 años)</span>
+          </div>
+        </div>
+
+        <section class="cv-section">
+          <div class="section-heading">Perfil Profesional</div>
+          <div class="profile-box">Vendedora y encargada de local comercial con Secundario Completo y amplia experiencia en atención personalizada, cierre de ventas, manejo de caja/Posnet y gestión de stock. Cuento con un diferencial único: conocimiento técnico real de confección y telas (2 años en taller textil) que facilita asesorar en calces, talles y calidad de prendas, sumado a manejo de Instagram, Facebook y Canva para promocionar ingresos y ofertas de la tienda.</div>
+        </section>
+
+        <section class="cv-section">
+          <div class="section-heading">Competencias y Habilidades Clave</div>
+          <div class="skills-grid"><div class="skill-card">
+                <div class="skill-card-title">Ventas de Salón y Asesoramiento</div>
+                <div class="skill-card-desc">Trato cordial y dinámico, asesoramiento por talles, modelos y calces, venta sugerida y armado/orden de vidriera y percheros.</div>
+            </div><div class="skill-card">
+                <div class="skill-card-title">Caja y Gestión de Tienda</div>
+                <div class="skill-card-desc">Apertura/cierre de local, facturación, cobros con Posnet (cuotas, débito, QR, transferencias), arqueos de caja y cambios.</div>
+            </div><div class="skill-card">
+                <div class="skill-card-title">Redes Sociales y Marketing</div>
+                <div class="skill-card-desc">Creación de placas e historias atractivas en Canva y gestión comercial de Instagram/Facebook para impulsar las ventas.</div>
+            </div><div class="skill-card">
+                <div class="skill-card-title">Conocimiento Textil Real</div>
+                <div class="skill-card-desc">Experiencia técnica en confección, telas y costuras para evaluar calidad de prendas y controlar stock con proveedores.</div>
+            </div></div>
+        </section>
+
+        <section class="cv-section">
+          <div class="section-heading">Experiencia Laboral Comprobable</div>
+          <div class="timeline-list">
             <div class="exp-item">
+                <div class="exp-dot"></div>
                 <div class="exp-header">
-                    <span class="exp-role">Encargada de Tienda, Ventas y Redes Sociales — <strong>El Arte del Buen Comer</strong></span>
+                    <div class="exp-role-wrap">
+                        <span class="exp-role">Encargada de Tienda, Ventas y Redes Sociales</span>
+                        <span class="exp-company">• El Arte del Buen Comer</span>
+                    </div>
                     <span class="exp-date">Nov 2025 – Ago 2026</span>
                 </div>
-                <ul><li>Liderazgo integral del local: apertura y cierre, arqueos de caja, facturación, control de inventario y trato con proveedores.</li><li>Gestión comercial de redes sociales (Instagram/Facebook) y diseño de piezas promocionales en Canva para atraer clientes.</li><li>Capacitación y coordinación de personal en salón para garantizar una atención cálida y ágil.</li></ul>
+                <ul class="exp-bullets"><li>Liderazgo integral del local: apertura y cierre, arqueos de caja, facturación, control de inventario y trato con proveedores.</li><li>Gestión comercial de redes sociales (Instagram/Facebook) y diseño de piezas promocionales en Canva para atraer clientes.</li><li>Capacitación y coordinación de personal en salón para garantizar una atención cálida y ágil.</li></ul>
             </div>
             
             <div class="exp-item">
+                <div class="exp-dot"></div>
                 <div class="exp-header">
-                    <span class="exp-role">Atención al Público, Ventas y Caja — <strong>Jamón Jamón</strong></span>
+                    <div class="exp-role-wrap">
+                        <span class="exp-role">Atención al Público, Ventas y Caja</span>
+                        <span class="exp-company">• Jamón Jamón</span>
+                    </div>
                     <span class="exp-date">Mar 2024 – Oct 2025</span>
                 </div>
-                <ul><li>Asesoramiento directo al cliente, despacho dinámico en horas pico y fidelización de compradores.</li><li>Manejo de caja multicanal (efectivo, Posnet tarjetas, Mercado Pago, Cuenta DNI) y reposición ordenada de mercadería.</li></ul>
+                <ul class="exp-bullets"><li>Asesoramiento directo al cliente, despacho dinámico en horas pico y fidelización de compradores.</li><li>Manejo de caja multicanal (efectivo, Posnet tarjetas, Mercado Pago, Cuenta DNI) y reposición ordenada de mercadería.</li></ul>
             </div>
             
             <div class="exp-item">
+                <div class="exp-dot"></div>
                 <div class="exp-header">
-                    <span class="exp-role">Operaria de Confección y Control de Calidad Textil — <strong>Taller de Costura</strong></span>
+                    <div class="exp-role-wrap">
+                        <span class="exp-role">Operaria de Confección y Control de Calidad Textil</span>
+                        <span class="exp-company">• Taller de Costura</span>
+                    </div>
                     <span class="exp-date">Feb 2019 – May 2021</span>
                 </div>
-                <ul><li>Conocimiento profundo de prendas, costuras, telas y talles (manejo de Recta, Overlock y Collareta) y control de calidad de artículos terminados.</li></ul>
+                <ul class="exp-bullets"><li>Conocimiento profundo de prendas, costuras, telas y talles (manejo de Recta, Overlock y Collareta) y control de calidad de artículos terminados.</li></ul>
             </div>
-            
-    </div>
-    <div class="section">
-      <div class="section-title">Formación Académica y Disponibilidad</div>
-      <div class="edu-box">
-        <div><strong>Secundario Completo</strong> — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere)</div>
-        <div><strong>Disponibilidad:</strong> Inmediata (Full-Time / Part-Time)</div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+          <div class="section-heading">Formación Académica</div>
+          <div class="edu-footer-bar">
+            <div>🎓 <strong>Secundario Completo</strong> — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere)</div>
+          </div>
+        </section>
       </div>
-    </div>
+    </main>
   </div>
+
+  <div class="cv-toast" id="cvToast">✨ Generando PDF en 1 página...</div>
+
   <script>
-    function downloadPdf() {
+    // Subtle Interactive Particle System
+    (function initParticles() {
+      const canvas = document.getElementById('bgParticles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+      const accent = '#7c3aed';
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      const count = window.innerWidth < 600 ? 18 : 32;
+      const particles = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2.6 + 1,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        alpha: Math.random() * 0.35 + 0.12
+      }));
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h;
+          if (p.y > h) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = accent;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    function showToast(msg) {
+      const t = document.getElementById('cvToast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      clearTimeout(window._cvT);
+      window._cvT = setTimeout(() => t.style.display = 'none', 2600);
+    }
+
+    function downloadPdf(e) {
       const el = document.getElementById('cvSheet');
-      const opt = {
-        margin: [10, 12, 10, 12],
-        filename: 'CV_Candelaria_Franco_03_CV_Indumentaria_Calzado_y_Deportes.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
+      const btn = document.getElementById('btnDownload');
+      if (!el) return;
+
+      showToast('✨ Preparando tu CV en 1 página...');
+      if (btn) btn.textContent = '⏳ Generando...';
+      const filename = 'CV_Candelaria_Franco_03_CV_Indumentaria_Calzado_y_Deportes.pdf';
+
+      // Clone CV and set 100% responsive width to perfectly fit A4 printable area
+      const clone = el.cloneNode(true);
+      clone.id = 'pdf-export-clone';
+      clone.style.width = '100%';
+      clone.style.maxWidth = '100%';
+      clone.style.minWidth = '0';
+      clone.style.margin = '0';
+      clone.style.borderRadius = '0';
+      clone.style.boxShadow = 'none';
+      clone.style.border = 'none';
+      clone.style.transform = 'none';
+      clone.style.boxSizing = 'border-box';
+
+      const skillsGrid = clone.querySelector('.skills-grid');
+      if (skillsGrid) {
+        skillsGrid.style.display = 'grid';
+        skillsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        skillsGrid.style.gap = '7px';
+      }
+      const contactGrid = clone.querySelector('.cv-contact-grid');
+      if (contactGrid) {
+        contactGrid.style.display = 'grid';
+        contactGrid.style.gridTemplateColumns = 'repeat(2, auto)';
+        contactGrid.style.gap = '4px 14px';
+      }
+
       if (typeof html2pdf !== 'undefined') {
-        html2pdf().set(opt).from(el).save();
+        const opt = {
+          margin: [6, 8, 6, 8],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            scrollX: 0,
+            scrollY: 0
+          },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['avoid-all'] }
+        };
+
+        html2pdf().set(opt).from(clone).save().then(() => {
+          if (btn) btn.textContent = '✅ ¡PDF Descargado!';
+          showToast('✅ ¡CV descargado en 1 sola página completa!');
+          setTimeout(() => { if (btn) btn.textContent = '📥 Descargar PDF (1 Pág)'; }, 2200);
+        }).catch(err => {
+          if (btn) btn.textContent = '📥 Descargar PDF (1 Pág)';
+          console.warn('Fallback print:', err);
+          window.print();
+        });
       } else {
         window.print();
       }

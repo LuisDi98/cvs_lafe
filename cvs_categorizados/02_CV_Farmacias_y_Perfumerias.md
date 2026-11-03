@@ -6,7 +6,7 @@
 ---
 
 ## PERFIL PROFESIONAL (FARMACIAS Y PERFUMERÍAS)
-Perfil prolijo, responsable y empático con Secundario Completo y más de 2 años de experiencia en atención al público, manejo preciso de caja, facturación y control de stock y vencimientos. Destacada por el trato paciente, cordial y respetuoso con todo tipo de clientes (incluyendo adultos mayores), impecable presentación personal y riguroso cuidado del orden e higiene del salón. Residente en Gregorio de Laferrere con disponibilidad inmediata.
+Perfil prolijo, responsable y empático con Secundario Completo y más de 2 años de experiencia en atención al público, manejo preciso de caja, facturación y control de stock y vencimientos. Destacada por el trato paciente, cordial y respetuoso con todo tipo de clientes (incluyendo adultos mayores), impecable presentación personal y riguroso cuidado del orden e higiene del salón. Residente en Gregorio de Laferrere, con amplia responsabilidad y compromiso.
 
 ## HABILIDADES Y COMPETENCIAS CLAVE
 - **Atención en Salón y Perfumería:** Asesoramiento cálido y paciente al cliente, acompañamiento a adultos mayores, orden de góndolas y exhibidores.
@@ -30,4 +30,3 @@ Perfil prolijo, responsable y empático con Secundario Completo y más de 2 año
 
 ## FORMACIÓN ACADÉMICA
 - **Secundario Completo** — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere, La Matanza)
-- **Disponibilidad:** Inmediata (Full-time / Part-time / Turnos rotativos)

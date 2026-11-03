@@ -30,4 +30,3 @@ Especialista en atención de mostrador alimenticio, fiambrería y gestión de lo
 
 ## FORMACIÓN ACADÉMICA
 - **Secundario Completo** — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere, La Matanza)
-- **Disponibilidad:** Inmediata (Full-time / Part-time / Turnos rotativos)

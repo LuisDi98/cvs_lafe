@@ -6,7 +6,7 @@
 ---
 
 ## PERFIL PROFESIONAL (TALLERES TEXTILES, CONFECCIÓN Y RETACERÍAS)
-Operaria textil con más de 2 años de experiencia práctica en Taller de Costura operando, enhebrando y calibrando máquinas industriales Recta, Overlock y Collareta, además de corte, habilitado de piezas y control de calidad. Complemento mi perfil técnico con experiencia reciente como Encargada de Local, manejo de caja, control de stock y atención a clientes mayoristas y minoristas. Residente en Gregorio de Laferrere con disponibilidad inmediata.
+Operaria textil con más de 2 años de experiencia práctica en Taller de Costura operando, enhebrando y calibrando máquinas industriales Recta, Overlock y Collareta, además de corte, habilitado de piezas y control de calidad. Complemento mi perfil técnico con experiencia reciente como Encargada de Local, manejo de caja, control de stock y atención a clientes mayoristas y minoristas. Residente en Gregorio de Laferrere, con amplia responsabilidad y compromiso.
 
 ## HABILIDADES Y COMPETENCIAS CLAVE
 - **Maquinaria Textil Industrial:** Operación, enhebrado y calibración de máquinas Recta, Overlock y Collareta en línea de producción.
@@ -29,4 +29,3 @@ Operaria textil con más de 2 años de experiencia práctica en Taller de Costur
 
 ## FORMACIÓN ACADÉMICA
 - **Secundario Completo** — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere, La Matanza)
-- **Disponibilidad:** Inmediata (Full-time / Part-time / Turnos rotativos)

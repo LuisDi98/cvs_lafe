@@ -29,4 +29,3 @@ Vendedora, cajera y encargada de tienda con Secundario Completo y sólida experi
 
 ## FORMACIÓN ACADÉMICA
 - **Secundario Completo** — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere, La Matanza)
-- **Disponibilidad:** Inmediata (Full-time / Part-time / Turnos rotativos)

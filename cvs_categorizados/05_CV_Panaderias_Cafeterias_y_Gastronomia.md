@@ -29,4 +29,3 @@ Perfil gastronómico y comercial muy dinámico, con más de 2 años de experienc
 
 ## FORMACIÓN ACADÉMICA
 - **Secundario Completo** — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere, La Matanza)
-- **Disponibilidad:** Inmediata (Full-time / Part-time / Turnos rotativos)

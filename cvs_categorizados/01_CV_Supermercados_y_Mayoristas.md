@@ -6,7 +6,7 @@
 ---
 
 ## PERFIL PROFESIONAL (SUPERMERCADOS, MAYORISTAS Y AUTOSERVICIOS)
-Joven profesional con Secundario Completo y sólida experiencia comprobable en manejo integral de caja, facturación, cobros electrónicos (Posnet, QR, Mercado Pago, Cuenta DNI) y atención al público de alto flujo. Amplia práctica en recepción de proveedores, control de stock y fechas de vencimiento, reposición en góndola y orden del salón. Rápida, puntual y residente en Gregorio de Laferrere con disponibilidad horaria inmediata.
+Joven profesional con Secundario Completo y sólida experiencia comprobable en manejo integral de caja, facturación, cobros electrónicos (Posnet, QR, Mercado Pago, Cuenta DNI) y atención al público de alto flujo. Amplia práctica en recepción de proveedores, control de stock y fechas de vencimiento, reposición en góndola y orden del salón. Rápida, puntual, con gran predisposición y residente en Gregorio de Laferrere.
 
 ## HABILIDADES Y COMPETENCIAS CLAVE
 - **Caja y Facturación:** Apertura, cierre y arqueos de caja, manejo veloz de Posnet (débito/crédito), cobros QR, billeteras virtuales y efectivo sin diferencias.
@@ -30,4 +30,3 @@ Joven profesional con Secundario Completo y sólida experiencia comprobable en m
 
 ## FORMACIÓN ACADÉMICA
 - **Secundario Completo** — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere, La Matanza)
-- **Disponibilidad:** Inmediata (Full-time / Part-time / Turnos rotativos)

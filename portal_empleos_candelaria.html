@@ -814,11 +814,30 @@
   }
 
   @media print {
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #ffffff !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
     body * { visibility: hidden; }
     #cvModal, #cvModal * { visibility: visible; }
-    #cvModal { position: absolute; left: 0; top: 0; width: 100%; padding: 0; background: #fff; }
+    #cvModal {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      margin: 0 !important;
+      padding: 12mm 14mm !important;
+      background: #ffffff !important;
+    }
     .modal-head { display: none !important; }
-    .modal-box { box-shadow: none; border-radius: 0; max-height: none; }
+    .modal-box { box-shadow: none !important; border: none !important; border-radius: 0 !important; max-height: none !important; }
   }
 </style>
 </head>

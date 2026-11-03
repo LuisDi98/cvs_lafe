@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CV Candelaria Franco - Supermercados y Mayoristas</title>
 <style>
-  @page { size: A4; margin: 14mm; }
+  @page { size: A4 portrait; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -120,9 +120,28 @@
     color: #334155;
   }
   @media print {
-    body { background: #fff; padding: 0; }
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #ffffff !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
     .print-bar { display: none !important; }
-    .sheet { box-shadow: none; padding: 0; min-height: auto; }
+    .sheet {
+      box-shadow: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 100% !important;
+      margin: 0 !important;
+      padding: 12mm 14mm !important;
+    }
   }
 </style>
 </head>

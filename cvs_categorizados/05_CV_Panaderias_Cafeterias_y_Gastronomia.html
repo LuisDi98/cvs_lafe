@@ -2,122 +2,137 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>CV Candelaria Franco - Panaderías, Cafés y Gastronomía</title>
+<script src="../html2pdf.bundle.min.js"></script>
 <style>
-  @page { size: A4 portrait; margin: 0; }
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: #1e293b;
     background: #f1f5f9;
-    line-height: 1.45;
-    padding: 24px;
+    line-height: 1.35;
+    margin: 0;
+    padding: 0;
   }
   .print-bar {
-    max-width: 210mm;
-    margin: 0 auto 16px auto;
+    max-width: 800px;
+    margin: 16px auto;
     background: #0f172a;
     color: #fff;
-    padding: 14px 20px;
+    padding: 12px 18px;
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
   }
-  .print-btn {
-    background: #10b981;
-    color: #fff;
+  .btn-grp {
+    display: flex;
+    gap: 8px;
+  }
+  .action-btn {
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 13px;
     cursor: pointer;
   }
-  .print-btn:hover { background: #059669; }
+  .btn-download {
+    background: #10b981;
+    color: #fff;
+  }
+  .btn-print {
+    background: #0284c7;
+    color: #fff;
+  }
   .sheet {
-    max-width: 210mm;
-    min-height: 270mm;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
     background: #ffffff;
-    padding: 18mm 18mm;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    border-radius: 6px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border-radius: 8px;
   }
   .header {
-    border-bottom: 3px solid #e11d48;
-    padding-bottom: 14px;
-    margin-bottom: 16px;
+    border-bottom: 2.5px solid #e11d48;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
   }
   .name {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 800;
-    letter-spacing: 0.5px;
     color: #0f172a;
+    letter-spacing: -0.2px;
   }
   .headline {
-    font-size: 13.5px;
+    font-size: 12.5px;
     font-weight: 700;
     color: #e11d48;
-    margin-top: 4px;
-    letter-spacing: 0.4px;
+    margin-top: 2px;
   }
   .contact-row {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #334155;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #475569;
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 12px;
   }
   .section {
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
   .section-title {
-    font-size: 13px;
+    font-size: 11.5px;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.6px;
     color: #e11d48;
     border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 4px;
-    margin-bottom: 8px;
+    padding-bottom: 2px;
+    margin-bottom: 6px;
   }
   .profile-text {
-    font-size: 13.5px;
+    font-size: 12px;
     color: #334155;
     text-align: justify;
+    line-height: 1.4;
   }
   .skills-list {
-    padding-left: 18px;
-    font-size: 13px;
+    padding-left: 16px;
+    font-size: 11.8px;
     color: #334155;
   }
-  .skills-list li { margin-bottom: 5px; }
-  .exp-item { margin-bottom: 12px; }
+  .skills-list li { margin-bottom: 3px; }
+  .exp-item { margin-bottom: 8px; }
   .exp-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 14px;
-    margin-bottom: 4px;
+    font-size: 12.8px;
+    margin-bottom: 2px;
   }
   .exp-role { font-weight: 700; color: #0f172a; }
-  .exp-date { font-size: 12.5px; color: #64748b; font-weight: 600; }
+  .exp-date { font-size: 11.5px; color: #64748b; font-weight: 600; }
   .exp-item ul {
-    padding-left: 18px;
-    font-size: 13px;
+    padding-left: 16px;
+    font-size: 11.8px;
     color: #334155;
   }
-  .exp-item li { margin-bottom: 3px; }
+  .exp-item li { margin-bottom: 2px; }
   .edu-box {
     display: flex;
     justify-content: space-between;
-    font-size: 13.5px;
+    font-size: 12px;
     color: #334155;
+    flex-wrap: wrap;
+    gap: 6px;
   }
   @media print {
     @page {
@@ -128,6 +143,8 @@
       margin: 0 !important;
       padding: 0 !important;
       background: #ffffff !important;
+      height: 100% !important;
+      overflow: hidden !important;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
@@ -138,9 +155,10 @@
       border-radius: 0 !important;
       width: 100% !important;
       max-width: 100% !important;
-      min-height: 100% !important;
       margin: 0 !important;
       padding: 12mm 14mm !important;
+      page-break-after: avoid !important;
+      page-break-inside: avoid !important;
     }
   }
 </style>
@@ -148,12 +166,15 @@
 <body>
   <div class="print-bar">
     <div>
-      <strong>CV Categorizado #5: Panaderías, Cafeterías, Heladerías y Gastronomía</strong>
-      <div style="font-size:13px; opacity:0.85;">Podés imprimirlo directamente o elegir "Guardar como PDF" en la ventana de impresión.</div>
+      <strong>CV #5: Panaderías, Cafés y Gastronomía</strong>
+      <div style="font-size:12px; opacity:0.85;">Listo en 1 página para enviar por WhatsApp o imprimir.</div>
     </div>
-    <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
+    <div class="btn-grp">
+      <button class="action-btn btn-download" onclick="downloadPdf()">📥 Descargar PDF (1 Pág)</button>
+      <button class="action-btn btn-print" onclick="window.print()">🖨️ Imprimir</button>
+    </div>
   </div>
-  <div class="sheet">
+  <div class="sheet" id="cvSheet">
     <div class="header">
       <div class="name">CANDELARIA FRANCO</div>
       <div class="headline">ATENCIÓN AL MOSTRADOR • CAJA Y ADICIÓN • ENCARGADA DE TURNO</div>
@@ -208,5 +229,22 @@
       </div>
     </div>
   </div>
+  <script>
+    function downloadPdf() {
+      const el = document.getElementById('cvSheet');
+      const opt = {
+        margin: [10, 12, 10, 12],
+        filename: 'CV_Candelaria_Franco_05_CV_Panaderias_Cafeterias_y_Gastronomia.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      if (typeof html2pdf !== 'undefined') {
+        html2pdf().set(opt).from(el).save();
+      } else {
+        window.print();
+      }
+    }
+  </script>
 </body>
 </html>

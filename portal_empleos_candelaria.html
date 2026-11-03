@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Buscador de Empleo — Candelaria Franco</title>
+<script src="html2pdf.bundle.min.js"></script>
 <style>
   :root {
     --bg: #f8fafc;
@@ -822,22 +823,53 @@
       margin: 0 !important;
       padding: 0 !important;
       background: #ffffff !important;
+      height: 100% !important;
+      overflow: hidden !important;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
-    body * { visibility: hidden; }
-    #cvModal, #cvModal * { visibility: visible; }
-    #cvModal {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      margin: 0 !important;
-      padding: 12mm 14mm !important;
-      background: #ffffff !important;
+    /* Completely remove main page from layout so it does not add blank pages */
+    .app-header,
+    .categories-wrapper,
+    main,
+    .first-visit-banner,
+    .tour-overlay,
+    .tour-popover,
+    .toast-pill,
+    #allCvsModal {
+      display: none !important;
     }
-    .modal-head { display: none !important; }
-    .modal-box { box-shadow: none !important; border: none !important; border-radius: 0 !important; max-height: none !important; }
+    #cvModal {
+      display: block !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 10mm 12mm !important;
+      background: #ffffff !important;
+      backdrop-filter: none !important;
+      overflow: hidden !important;
+    }
+    #cvModal .modal-head {
+      display: none !important;
+    }
+    #cvModal .modal-box {
+      box-shadow: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      max-height: none !important;
+      overflow: visible !important;
+      width: 100% !important;
+      padding: 0 !important;
+    }
+    #cvModal .modal-scrollable-body {
+      padding: 0 !important;
+      overflow: visible !important;
+    }
   }
 </style>
 </head>
@@ -935,8 +967,9 @@
     <div class="modal-box">
       <div class="modal-head">
         <span class="modal-title-text" id="cvModalTitle">Currículum Vitae</span>
-        <div style="display:flex; gap:8px;">
-          <button type="button" style="background:#10b981; color:#fff; border:none; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:700; cursor:pointer;" onclick="window.print()">🖨️ Imprimir / PDF</button>
+        <div style="display:flex; gap:6px; align-items:center;">
+          <button type="button" style="background:#10b981; color:#fff; border:none; padding:6px 13px; border-radius:999px; font-size:12px; font-weight:800; cursor:pointer;" onclick="downloadCurrentCvPdf()">📥 Descargar PDF (1 Pág)</button>
+          <button type="button" style="background:#0284c7; color:#fff; border:none; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700; cursor:pointer;" onclick="window.print()">🖨️ Imprimir</button>
           <button type="button" class="btn-close" onclick="closeCvModal()">✕</button>
         </div>
       </div>
@@ -1356,59 +1389,88 @@ function openCvModal(catId, storeId) {
   const cat = CATEGORIES[catId];
   const store = storeId ? BUSINESSES.find(x => x.id === storeId) : null;
 
+  window._currentCvFilename = store
+    ? `CV_Candelaria_Franco_${store.name.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`
+    : `CV_Candelaria_Franco_${cat.short_name.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+
   document.getElementById('cvModalTitle').textContent = store
     ? `CV para ${store.name} (${cat.short_name})`
     : `CV #${cat.num}: ${cat.name}`;
 
-  const skillsHtml = cat.cv_skills_order.map(([k, v]) => `<li style="margin-bottom:4px;"><strong>${k}:</strong> ${v}</li>`).join('');
+  const skillsHtml = cat.cv_skills_order.map(([k, v]) => `<li style="margin-bottom:2px;"><strong>${k}:</strong> ${v}</li>`).join('');
   const expHtml = cat.cv_experiences.map(e => `
-    <div style="margin-bottom:10px;">
-      <div style="display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; color:#0f172a;">
+    <div style="margin-bottom:6px;">
+      <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:700; color:#0f172a;">
         <span>${e.role} — ${e.company}</span>
-        <span style="font-size:12px; color:#64748b;">${e.period}</span>
+        <span style="font-size:11px; color:#64748b;">${e.period}</span>
       </div>
-      <ul style="padding-left:16px; font-size:12.5px; color:#334155; margin-top:2px;">
-        ${e.bullets.map(b => `<li style="margin-bottom:2px;">${b}</li>`).join('')}
+      <ul style="padding-left:14px; font-size:11px; color:#334155; margin-top:1px;">
+        ${e.bullets.map(b => `<li style="margin-bottom:1px;">${b}</li>`).join('')}
       </ul>
     </div>
   `).join('');
 
   const targetLine = store ? `
-    <div style="margin-top:6px; padding:5px 10px; background:#f0f9ff; border-left:3px solid #0284c7; font-size:12.5px; font-weight:700;">
+    <div style="margin-top:4px; padding:3px 8px; background:#f0f9ff; border-left:3px solid #0284c7; font-size:11px; font-weight:700;">
       Postulación para: ${escapeHtml(store.name)} (${escapeHtml(store.address_clean)})
     </div>
   ` : '';
 
   document.getElementById('cvModalBody').innerHTML = `
-    <div>
-      <div style="border-bottom:2px solid ${cat.color}; padding-bottom:8px; margin-bottom:12px;">
-        <div style="font-size:24px; font-weight:800; color:#0f172a;">CANDELARIA FRANCO</div>
-        <div style="font-size:13px; font-weight:700; color:${cat.color};">${cat.cv_headline}</div>
-        <div style="font-size:12.5px; color:#475569; margin-top:4px;">
+    <div id="modalCvSheet" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height:1.3; color:#1e293b; background:#fff; padding:6px 2px;">
+      <div style="border-bottom:2px solid ${cat.color}; padding-bottom:6px; margin-bottom:8px;">
+        <div style="font-size:22px; font-weight:800; color:#0f172a; letter-spacing:-0.2px;">CANDELARIA FRANCO</div>
+        <div style="font-size:12px; font-weight:700; color:${cat.color};">${cat.cv_headline}</div>
+        <div style="font-size:11px; color:#475569; margin-top:3px;">
           📍 Ramón Freire 2018, Laferrere • 📞 +54 9 11 5646-6427 • ✉️ francocandelaria988@gmail.com
         </div>
         ${targetLine}
       </div>
-      <div style="margin-bottom:10px;">
-        <div style="font-size:12px; font-weight:800; text-transform:uppercase; color:${cat.color}; margin-bottom:3px;">Perfil</div>
-        <p style="font-size:12.5px; color:#334155;">${cat.cv_profile}</p>
+      <div style="margin-bottom:7px;">
+        <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:${cat.color}; margin-bottom:2px;">Perfil</div>
+        <p style="font-size:11.2px; color:#334155; line-height:1.35;">${cat.cv_profile}</p>
       </div>
-      <div style="margin-bottom:10px;">
-        <div style="font-size:12px; font-weight:800; text-transform:uppercase; color:${cat.color}; margin-bottom:3px;">Habilidades</div>
-        <ul style="padding-left:16px; font-size:12px; color:#334155;">${skillsHtml}</ul>
+      <div style="margin-bottom:7px;">
+        <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:${cat.color}; margin-bottom:2px;">Habilidades Clave</div>
+        <ul style="padding-left:14px; font-size:11px; color:#334155;">${skillsHtml}</ul>
       </div>
-      <div style="margin-bottom:10px;">
-        <div style="font-size:12px; font-weight:800; text-transform:uppercase; color:${cat.color}; margin-bottom:3px;">Experiencia</div>
+      <div style="margin-bottom:7px;">
+        <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:${cat.color}; margin-bottom:2px;">Experiencia Laboral</div>
         ${expHtml}
       </div>
       <div>
-        <div style="font-size:12px; font-weight:800; text-transform:uppercase; color:${cat.color}; margin-bottom:3px;">Educación</div>
-        <div style="font-size:12px; color:#334155;">Secundario Completo — E.E.S. N° 16 (Laferrere) • Disponibilidad Inmediata</div>
+        <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:${cat.color}; margin-bottom:2px;">Educación y Disponibilidad</div>
+        <div style="font-size:11px; color:#334155;">Secundario Completo — E.E.S. N° 16 (Laferrere) • Disponibilidad Inmediata</div>
       </div>
     </div>
   `;
 
   document.getElementById('cvModal').classList.add('open');
+}
+
+function downloadCurrentCvPdf() {
+  const el = document.getElementById('modalCvSheet');
+  if (!el) return;
+  showToast('Generando PDF de 1 página...');
+  const filename = window._currentCvFilename || 'CV_Candelaria_Franco.pdf';
+
+  if (typeof html2pdf !== 'undefined') {
+    const opt = {
+      margin: [8, 10, 8, 10],
+      filename: filename,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(el).save().then(() => {
+      showToast('¡PDF de 1 página descargado!');
+    }).catch(err => {
+      console.warn('Fallback print:', err);
+      window.print();
+    });
+  } else {
+    window.print();
+  }
 }
 
 function closeCvModal() {

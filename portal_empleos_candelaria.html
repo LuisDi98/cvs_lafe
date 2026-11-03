@@ -65,7 +65,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    gap: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
   .brand-area {
@@ -84,7 +85,7 @@
   }
 
   .brand-subtitle {
-    font-size: 12.5px;
+    font-size: 12px;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
@@ -95,21 +96,41 @@
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+  }
+
+  .btn-tour-header {
+    background: #f0fdf4;
+    color: #166534;
+    border: 1.5px solid #bbf7d0;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-tour-header:hover {
+    background: #dcfce7;
   }
 
   .btn-all-cvs {
     background: #0f172a;
     color: #ffffff;
     border: none;
-    padding: 8px 14px;
+    padding: 7px 13px;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     transition: background 0.15s;
     white-space: nowrap;
   }
@@ -118,18 +139,7 @@
     background: #1e293b;
   }
 
-  .progress-pill {
-    background: #ecfdf5;
-    color: #047857;
-    border: 1px solid #a7f3d0;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 5px 10px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-
-  /* Horizontal Category Scroll (Stories/Chips style) */
+  /* Horizontal Category Scroll */
   .categories-wrapper {
     background: #ffffff;
     border-bottom: 1px solid var(--border);
@@ -277,7 +287,6 @@
     font-weight: 600;
   }
 
-  /* Results info & Page mini control */
   .results-meta-bar {
     display: flex;
     justify-content: space-between;
@@ -316,7 +325,6 @@
     background: #fefce8;
   }
 
-  /* Card Header */
   .card-header-line {
     display: flex;
     justify-content: space-between;
@@ -376,7 +384,6 @@
     transform: scale(1.1);
   }
 
-  /* Concise Badges Row */
   .card-badges-row {
     display: flex;
     flex-wrap: wrap;
@@ -412,7 +419,6 @@
     border: 1px solid #e2e8f0;
   }
 
-  /* Address & Map */
   .card-location-line {
     display: flex;
     align-items: baseline;
@@ -443,7 +449,6 @@
 
   .link-map:hover { text-decoration: underline; }
 
-  /* Clean Action Buttons (Only 2 or 3 essential buttons) */
   .card-actions-row {
     display: flex;
     gap: 8px;
@@ -499,7 +504,6 @@
   }
   .btn-act-web:hover { background: #ea580c; }
 
-  /* Progressive Disclosure Accordion (Tips on demand) */
   .accordion-toggle {
     background: transparent;
     border: none;
@@ -560,7 +564,6 @@
     margin-top: 6px;
   }
 
-  /* Minimalist Pagination Bar */
   .pagination-container {
     display: flex;
     justify-content: space-between;
@@ -595,7 +598,7 @@
     color: var(--text-secondary);
   }
 
-  /* Minimal Modals */
+  /* Modals */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -657,7 +660,6 @@
     overflow-y: auto;
   }
 
-  /* Toast Notification */
   .toast-pill {
     position: fixed;
     bottom: 20px;
@@ -672,6 +674,143 @@
     display: none;
     z-index: 200;
     box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+
+  /* ======================================================== */
+  /* GUIDED INTERACTIVE TOUR (SPOTLIGHT & ONBOARDING)         */
+  /* ======================================================== */
+  .tour-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.74);
+    z-index: 990;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(1.5px);
+  }
+
+  .tour-overlay.open {
+    display: block;
+    opacity: 1;
+  }
+
+  .tour-highlight {
+    position: relative !important;
+    z-index: 995 !important;
+    box-shadow: 0 0 0 4px #38bdf8, 0 0 35px rgba(56, 189, 248, 0.75) !important;
+    background-color: #ffffff !important;
+    border-radius: var(--radius-md) !important;
+    transition: all 0.25s ease !important;
+  }
+
+  .tour-popover {
+    position: fixed;
+    z-index: 1000;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px 20px;
+    width: calc(100% - 32px);
+    max-width: 370px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    border: 2px solid #38bdf8;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    animation: tourPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes tourPopIn {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .tour-step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    width: fit-content;
+  }
+
+  .tour-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+  }
+
+  .tour-desc {
+    font-size: 13.5px;
+    color: #334155;
+    line-height: 1.45;
+  }
+
+  .tour-actions-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .btn-tour-skip {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .btn-tour-next {
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+  }
+
+  .btn-tour-next:hover {
+    background: #0369a1;
+  }
+
+  /* First time welcome bar */
+  .first-visit-banner {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f172a;
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 14px;
+    width: calc(100% - 32px);
+    max-width: 440px;
+    z-index: 80;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-left: 4px solid #38bdf8;
+    animation: tourPopIn 0.3s ease;
   }
 
   @media print {
@@ -695,7 +834,10 @@
         </div>
       </div>
       <div class="header-actions">
-        <button type="button" class="btn-all-cvs" onclick="openAllCvsModal()">
+        <button type="button" class="btn-tour-header" id="btnTourHeader" onclick="startTour()">
+          ✨ ¿Cómo se usa?
+        </button>
+        <button type="button" class="btn-all-cvs" id="btnAllCvsHeader" onclick="openAllCvsModal()">
           📄 Mis 7 CVs
         </button>
       </div>
@@ -703,7 +845,7 @@
   </header>
 
   <!-- Horizontal Scrollable Category Pills -->
-  <nav class="categories-wrapper">
+  <nav class="categories-wrapper" id="categoriesNavWrapper">
     <div class="container">
       <div class="categories-scroll" id="categoryScroll"></div>
     </div>
@@ -796,6 +938,31 @@
         </p>
         <div style="display:flex; flex-direction:column; gap:10px;" id="allCvsListContainer"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- GUIDED TOUR ELEMENTS -->
+  <div class="tour-overlay" id="tourOverlay" onclick="stopTour()"></div>
+
+  <div class="tour-popover" id="tourPopover">
+    <div class="tour-step-badge" id="tourStepBadge">Paso 1 de 5</div>
+    <div class="tour-title" id="tourTitle">Título del paso</div>
+    <div class="tour-desc" id="tourDesc">Descripción amigable para Candelaria...</div>
+    <div class="tour-actions-bar">
+      <button type="button" class="btn-tour-skip" onclick="stopTour()">Saltar</button>
+      <button type="button" class="btn-tour-next" id="btnTourNext" onclick="nextTourStep()">Siguiente ➡️</button>
+    </div>
+  </div>
+
+  <!-- First Time Welcome Banner -->
+  <div class="first-visit-banner" id="firstVisitBanner">
+    <div>
+      <div style="font-size:13.5px; font-weight:800;">👋 ¿Primera vez acá?</div>
+      <div style="font-size:12px; opacity:0.85;">Mirá una guía rápida de 30 segundos.</div>
+    </div>
+    <div style="display:flex; align-items:center; gap:6px;">
+      <button type="button" style="background:#38bdf8; color:#0f172a; border:none; padding:6px 12px; border-radius:999px; font-weight:800; font-size:12px; cursor:pointer;" onclick="dismissBanner(); startTour();">Ver tour ✨</button>
+      <button type="button" style="background:transparent; color:#fff; border:none; font-size:16px; cursor:pointer; padding:4px;" onclick="dismissBanner()">✕</button>
     </div>
   </div>
 
@@ -983,16 +1150,11 @@ function renderCard(b) {
   if (st === 'wa_sent' || st === 'cv_delivered' || st === 'called') cardClasses += ' status-contacted';
   if (st === 'interview') cardClasses += ' status-interview';
 
-  // Format short salary
   let shortSalary = b.salary_range.replace(' a ', ' - ').replace(' / mes', '');
-
-  // Format short role
   let shortRole = b.role_title.split('•')[0].trim();
 
-  // Action Buttons
   let actionBtns = '';
 
-  // 1. WhatsApp
   if (b.wa_numbers.length > 0) {
     const w = b.wa_numbers[0];
     const waUrl = `https://wa.me/${w.wa_clean}?text=${encodeURIComponent(b.wa_message)}`;
@@ -1003,7 +1165,6 @@ function renderCard(b) {
     `;
   }
 
-  // 2. Call
   if (b.phones.length > 0) {
     const p = b.phones[0];
     const cleanNum = p.display.replace('+54 ', '').replace('9 11 ', '11 ');
@@ -1028,7 +1189,6 @@ function renderCard(b) {
     `;
   }
 
-  // 3. CV button
   actionBtns += `
     <button type="button" class="btn-act btn-act-cv" onclick="openCvModal('${b.cat_id}', ${b.id})">
       📄 Mi CV
@@ -1071,7 +1231,6 @@ function renderCard(b) {
         ${actionBtns}
       </div>
 
-      <!-- Progressive disclosure: only opens on tap -->
       <button type="button" class="accordion-toggle" onclick="toggleAdvice(${b.id})">
         💡 Consejos y qué decir al llamar ▾
       </button>
@@ -1142,19 +1301,16 @@ function renderList() {
   if (state.page > totalPages) state.page = totalPages;
   if (state.page < 1) state.page = 1;
 
-  // Results count
   const start = total === 0 ? 0 : (state.page - 1) * state.pageSize + 1;
   const end = Math.min(total, state.page * state.pageSize);
   document.getElementById('resultsCount').textContent = total === 0
     ? 'No se encontraron comercios'
     : `${start}-${end} de ${total} comercios`;
 
-  // Has active filter hint
   const hasFilter = state.category !== 'all' || state.search || state.zone !== 'all' || state.pay !== 'all' || state.onlyWa || state.onlyFav || state.onlyPending;
   const hintEl = document.getElementById('activeFiltersHint');
   hintEl.textContent = hasFilter ? '↺ Limpiar filtros' : '';
 
-  // Pagination controls
   document.getElementById('pageIndicator').textContent = `${state.page} / ${totalPages}`;
   document.getElementById('btnPrevPage').disabled = state.page <= 1;
   document.getElementById('btnNextPage').disabled = state.page >= totalPages;
@@ -1268,10 +1424,145 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
   renderList();
 });
 
+/* ======================================================== */
+/* TOUR LOGIC (INTERACTIVE SPOTLIGHT WALKTHROUGH)           */
+/* ======================================================== */
+const TOUR_STEPS = [
+  {
+    selector: () => document.getElementById('categoriesNavWrapper'),
+    title: '1. Elegí qué rubro querés ver',
+    desc: 'Deslizá con el dedo para filtrar fiambrerías, tiendas de ropa, supermercados, panaderías o talleres. Podés verlos todos juntos o de a uno.'
+  },
+  {
+    selector: () => document.querySelector('#cardsStack .card-item .card-badges-row'),
+    title: '2. Mirá la distancia y la paga',
+    desc: 'Te dice a cuántos minutos te queda desde tu casa en Gregorio de Laferrere y cuánto pagan por mes aproximadamente.'
+  },
+  {
+    selector: () => document.querySelector('#cardsStack .card-item .btn-act-wa') || document.querySelector('#cardsStack .card-item .btn-act'),
+    title: '3. Contactá en 1 solo clic',
+    desc: 'Al tocar el botón verde, se abre tu WhatsApp con un mensaje ya redactado para ese negocio con tu experiencia. ¡Solo tenés que tocar Enviar!'
+  },
+  {
+    selector: () => document.querySelector('#cardsStack .card-item .accordion-toggle'),
+    title: '4. Consejos y qué decir',
+    desc: 'Si preferís llamar por teléfono o llevar el currículum en mano, tocá acá: te dejamos qué decir en 15 segundos y qué valoran más de vos.'
+  },
+  {
+    selector: () => document.getElementById('btnAllCvsHeader'),
+    title: '5. Tus 7 CVs listos en PDF',
+    desc: 'Acá tenés tus 7 currículums ya adaptados por rubro, listos para descargar en PDF o imprimir cuando los necesites.'
+  }
+];
+
+let tourCurrentIdx = 0;
+let currentHighlightedEl = null;
+
+function startTour() {
+  tourCurrentIdx = 0;
+  document.getElementById('tourOverlay').classList.add('open');
+  document.getElementById('tourPopover').style.display = 'flex';
+  renderTourStep();
+}
+
+function stopTour() {
+  document.getElementById('tourOverlay').classList.remove('open');
+  document.getElementById('tourPopover').style.display = 'none';
+  if (currentHighlightedEl) {
+    currentHighlightedEl.classList.remove('tour-highlight');
+    currentHighlightedEl = null;
+  }
+  localStorage.setItem('candelaria_tour_seen_v1', 'true');
+}
+
+function renderTourStep() {
+  if (currentHighlightedEl) {
+    currentHighlightedEl.classList.remove('tour-highlight');
+  }
+
+  const step = TOUR_STEPS[tourCurrentIdx];
+  const targetEl = step.selector();
+
+  document.getElementById('tourStepBadge').textContent = `Paso ${tourCurrentIdx + 1} de ${TOUR_STEPS.length}`;
+  document.getElementById('tourTitle').textContent = step.title;
+  document.getElementById('tourDesc').textContent = step.desc;
+
+  const btnNext = document.getElementById('btnTourNext');
+  if (tourCurrentIdx === TOUR_STEPS.length - 1) {
+    btnNext.innerHTML = '¡Listo, a buscar trabajo! 🎉';
+  } else {
+    btnNext.innerHTML = 'Siguiente ➡️';
+  }
+
+  if (targetEl) {
+    currentHighlightedEl = targetEl;
+    targetEl.classList.add('tour-highlight');
+
+    // Smooth scroll to target element
+    targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Position popover
+    setTimeout(() => {
+      positionPopover(targetEl);
+    }, 260);
+  }
+}
+
+function positionPopover(targetEl) {
+  const pop = document.getElementById('tourPopover');
+  const rect = targetEl.getBoundingClientRect();
+  const popHeight = pop.offsetHeight || 190;
+  const viewportHeight = window.innerHeight;
+
+  // Horizontal center
+  pop.style.left = '16px';
+  pop.style.right = '16px';
+  pop.style.margin = '0 auto';
+
+  // If there's enough space below, place below; otherwise place above or in safe zone
+  if (rect.bottom + popHeight + 20 < viewportHeight) {
+    pop.style.top = `${Math.max(16, rect.bottom + 12)}px`;
+    pop.style.bottom = 'auto';
+  } else if (rect.top - popHeight - 20 > 0) {
+    pop.style.top = `${Math.max(16, rect.top - popHeight - 12)}px`;
+    pop.style.bottom = 'auto';
+  } else {
+    // Center in screen
+    pop.style.top = 'auto';
+    pop.style.bottom = '20px';
+  }
+}
+
+function nextTourStep() {
+  if (tourCurrentIdx < TOUR_STEPS.length - 1) {
+    tourCurrentIdx++;
+    renderTourStep();
+  } else {
+    stopTour();
+    showToast('¡Tour completado! Éxitos en tu búsqueda.');
+  }
+}
+
+// First visit banner check
+function checkFirstVisit() {
+  const seen = localStorage.getItem('candelaria_tour_seen_v1');
+  if (!seen) {
+    setTimeout(() => {
+      document.getElementById('firstVisitBanner').style.display = 'flex';
+    }, 1200);
+  }
+}
+
+function dismissBanner() {
+  document.getElementById('firstVisitBanner').style.display = 'none';
+  localStorage.setItem('candelaria_tour_seen_v1', 'true');
+}
+
 // Init
 updateHeaderCounter();
 renderCategories();
 renderList();
+checkFirstVisit();
 </script>
 </body>
 </html>

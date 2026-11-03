@@ -1,0 +1,9 @@
+**CANDELARIA FRANCO**
+
+**ATENCIÓN AL CLIENTE • GESTIÓN DE LOCALES • VENTAS • CONFECCIÓN TEXTIL**
+
+\+54 9 11 5646-64227  \|  francocandelaria988@gmail.com  \|  Gregorio de Laferrere, La Matanza  \|  25/04/2005
+
+| PERFIL PROFESIONAL Perfil dinámico orientado a la atención al cliente, gestión de locales y resolución eficiente de problemas. Amplia experiencia en manejo de caja, ventas, redes sociales y confección textil industrial. FORMACIÓN Secundario Completo Escuela de Educación Secundaria N° 16 HABILIDADES TÉCNICAS Comercio y Caja: Facturación, terminales de pago, arqueos, control de stock, reposición y fiambrería. Textil e Industria: Operación de recta, Overlock y Collareta; calibración, corte y habilitado. Digitales: Canva, gestión de redes sociales (Instagram/Facebook). COMPETENCIAS • Liderazgo de equipos • Resolución de problemas • Responsabilidad y puntualidad • Trato cordial y proactividad | EXPERIENCIA LABORAL Encargada de Tienda \| El Arte del Buen Comer *Nov 2025 – Ago 2026* Manejo integral del local: apertura/cierre, facturación, arqueos de caja y control de inventario. Trato directo con proveedores y coordinación/capacitación de personal a cargo. Gestión comercial de redes sociales y creación de piezas publicitarias con Canva. Atención al Público y Ventas \| Jamón Jamón *Mar 2024 – Oct 2025* Asesoramiento personalizado en mostrador, corte de fiambres y despacho ágil. Cobro y facturación multicanal (efectivo, posnet, billeteras virtuales). Reposición, control de vencimientos y mantenimiento riguroso de higiene. Ayudante de Máquinas de Textil \| Taller de Costura *Feb 2019 – May 2021* Operación y enhebrado de maquinaria industrial (recta, Overlock y Collareta). Corte, habilitado de piezas y control de calidad inicial en línea de confección. |
+| :---- | :---- |
+

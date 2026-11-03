@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Candelaria Franco - Farmacias y Perfumerías</title>
+<style>
+  @page { size: A4; margin: 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #1e293b;
+    background: #f1f5f9;
+    line-height: 1.45;
+    padding: 24px;
+  }
+  .print-bar {
+    max-width: 210mm;
+    margin: 0 auto 16px auto;
+    background: #0f172a;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .print-btn {
+    background: #10b981;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  .print-btn:hover { background: #059669; }
+  .sheet {
+    max-width: 210mm;
+    min-height: 270mm;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 18mm 18mm;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-radius: 6px;
+  }
+  .header {
+    border-bottom: 3px solid #0d9488;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+  }
+  .name {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #0f172a;
+  }
+  .headline {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0d9488;
+    margin-top: 4px;
+    letter-spacing: 0.4px;
+  }
+  .contact-row {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #334155;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .section {
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #0d9488;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+  .profile-text {
+    font-size: 13.5px;
+    color: #334155;
+    text-align: justify;
+  }
+  .skills-list {
+    padding-left: 18px;
+    font-size: 13px;
+    color: #334155;
+  }
+  .skills-list li { margin-bottom: 5px; }
+  .exp-item { margin-bottom: 12px; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .exp-role { font-weight: 700; color: #0f172a; }
+  .exp-date { font-size: 12.5px; color: #64748b; font-weight: 600; }
+  .exp-item ul {
+    padding-left: 18px;
+    font-size: 13px;
+    color: #334155;
+  }
+  .exp-item li { margin-bottom: 3px; }
+  .edu-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    color: #334155;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .print-bar { display: none !important; }
+    .sheet { box-shadow: none; padding: 0; min-height: auto; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-bar">
+    <div>
+      <strong>CV Categorizado #2: Farmacias y Perfumerías</strong>
+      <div style="font-size:13px; opacity:0.85;">Podés imprimirlo directamente o elegir "Guardar como PDF" en la ventana de impresión.</div>
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
+  </div>
+  <div class="sheet">
+    <div class="header">
+      <div class="name">CANDELARIA FRANCO</div>
+      <div class="headline">CAJERA • AUXILIAR DE SALÓN Y PERFUMERÍA • ATENCIÓN AL PÚBLICO</div>
+      <div class="contact-row">
+        <span>📍 Gregorio de Laferrere, La Matanza (CP 1757)</span>
+        <span>📞 +54 9 11 5646-6427</span>
+        <span>✉️ francocandelaria988@gmail.com</span>
+        <span>🎂 25/04/2005</span>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Perfil Profesional</div>
+      <p class="profile-text">Perfil prolijo, responsable y empático con Secundario Completo y más de 2 años de experiencia en atención al público, manejo preciso de caja, facturación y control de stock y vencimientos. Destacada por el trato paciente, cordial y respetuoso con todo tipo de clientes (incluyendo adultos mayores), impecable presentación personal y riguroso cuidado del orden e higiene del salón. Residente en Gregorio de Laferrere con disponibilidad inmediata.</p>
+    </div>
+    <div class="section">
+      <div class="section-title">Habilidades Técnicas y Competencias</div>
+      <ul class="skills-list"><li><strong>Atención en Salón y Perfumería:</strong> Asesoramiento cálido y paciente al cliente, acompañamiento a adultos mayores, orden de góndolas y exhibidores.</li><li><strong>Caja y Medios de Pago:</strong> Facturación, arqueos de caja, cobro con Posnet (débito/crédito), QR, transferencias y efectivo con total precisión.</li><li><strong>Control de Vencimientos y Stock:</strong> Revisión periódica de lotes y fechas de vencimiento, recepción de pedidos de droguerías/proveedores y reposición.</li><li><strong>Formación y Presentación:</strong> Secundario Completo (E.E.S. N° 16). Excelente presencia, puntualidad, comunicación clara y manejo de redes/Canva.</li></ul>
+    </div>
+    <div class="section">
+      <div class="section-title">Experiencia Laboral Comprobable</div>
+      
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-role">Encargada de Local y Caja — <strong>El Arte del Buen Comer</strong></span>
+                    <span class="exp-date">Nov 2025 – Ago 2026</span>
+                </div>
+                <ul><li>Apertura y cierre del comercio, arqueos de caja diarios, facturación y supervisión del orden y limpieza general del salón.</li><li>Recepción y control de mercadería con proveedores, control de inventario y seguimiento de productos de alta rotación.</li><li>Atención personalizada y resolución de consultas de clientes con trato amable y resolutivo.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-role">Atención al Público, Caja y Control de Stock — <strong>Jamón Jamón</strong></span>
+                    <span class="exp-date">Mar 2024 – Oct 2025</span>
+                </div>
+                <ul><li>Atención continua al público, cobro en caja por múltiples medios de pago (efectivo, Posnet, billeteras virtuales).</li><li>Control estricto de fechas de vencimiento, rotación de mercadería y mantenimiento de estándares de higiene.</li><li>Trato diario y paciente con vecinos y clientes habituales, logrando una atención rápida y sin filas.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-role">Ayudante de Producción y Control de Calidad — <strong>Taller Textil</strong></span>
+                    <span class="exp-date">Feb 2019 – May 2021</span>
+                </div>
+                <ul><li>Revisión detallada de calidad, ordenamiento de stock por partidas y cumplimiento estricto de horarios.</li></ul>
+            </div>
+            
+    </div>
+    <div class="section">
+      <div class="section-title">Formación Académica y Disponibilidad</div>
+      <div class="edu-box">
+        <div><strong>Secundario Completo</strong> — Escuela de Educación Secundaria N° 16 (Gregorio de Laferrere)</div>
+        <div><strong>Disponibilidad:</strong> Inmediata (Full-Time / Part-Time)</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
